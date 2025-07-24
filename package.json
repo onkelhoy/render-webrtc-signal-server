@@ -1,0 +1,14 @@
+{
+  "name": "render-webrtc-signal-server",
+  "version": "1.0.0",
+  "description": "this repo is dedicated for the render.com hosting to host my singling server to handle webrtc handshakes",
+  "main": "index.js",
+  "scripts": {
+    "start": "npx @papit/signaling-server"
+  },
+  "author": "Henry Pap",
+  "license": "ISC",
+  "dependencies": { 
+    "@papit/signaling-server": "^0.0.1"
+  }
+}
