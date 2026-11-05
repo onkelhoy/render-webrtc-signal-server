@@ -13,8 +13,9 @@ Set these in the Render dashboard under **Environment**. Never commit them, this
 | `VAPID_PUBLIC_KEY` | for web push | public half of the key pair |
 | `VAPID_PRIVATE_KEY` | for web push | private half, keep it secret |
 | `VAPID_SUBJECT` | no | `mailto:` or `https:` contact shown to push services, defaults to the papit repo |
+| `SIGNAL_SECRET` | recommended | any long random string, signs the resume tokens so reconnecting peers keep their id across a restart. Without it they're random per process |
 
-Generate the pair once with `npx @papit/signal-server --generate-vapid` and keep it: new keys void every push token. Without them the server still runs, on throwaway keys that die on restart. Render sets `PORT` itself.
+Make a secret with `openssl rand -hex 32`. Generate the VAPID pair once with `npx @papit/signal-server --generate-vapid` and keep it: new keys void every push token. Without them the server still runs, on throwaway keys that die on restart. Render sets `PORT` itself.
 
 ## Render settings
 
@@ -24,6 +25,8 @@ Generate the pair once with `npx @papit/signal-server --generate-vapid` and keep
 | Build command | `npm install` |
 | Start command | `npm start` |
 | Health check path | `/health` |
+
+`GET /version` returns the running `@papit/signal-server` name and version, to check that a deploy is live.
 
 The server reads the port from Render's `PORT` env variable. Optional flags can be appended to the start command, e.g. `npm start -- --forward-rate=300`; see the signal-server README for the full list.
 

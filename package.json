@@ -13,6 +13,6 @@
     "node": ">=18"
   },
   "dependencies": {
-    "@papit/signal-server": "0.1.0"
+    "@papit/signal-server": "0.1.1"
   }
 }
